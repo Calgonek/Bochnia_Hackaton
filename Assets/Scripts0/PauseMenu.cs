@@ -1,48 +1,73 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PauseMenu : MonoBehaviour
 {
-    // Zmienna statyczna, żeby łatwo sprawdzać z innych skryptów, czy gra jest zapauzowana
-    public static bool GameIsPaused = false; 
+    public static bool GameIsPaused = false;
 
     [Header("UI References")]
-    public GameObject pauseMenuUI;
+    [SerializeField] private GameObject pauseMenuUI;
 
-    void Update()
+    // Tworzymy akcję wejścia (InputAction)
+    private InputAction pauseAction;
+
+    private void Awake()
     {
-        // Sprawdzamy, czy gracz wcisnął klawisz Escape (możesz to zmienić na inny)
-        if (Input.GetKeyDown(KeyCode.Escape))
+        // Konfigurujemy akcję: reaguje na wciśnięcie przycisku Escape na klawiaturze
+        pauseAction = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/escape");
+        
+        // Podpinamy naszą metodę TogglePause pod moment "wykonania" akcji (wciśnięcia klawisza)
+        pauseAction.performed += context => TogglePause();
+    }
+
+    // Ważne: Akcje trzeba włączać i wyłączać, żeby uniknąć wycieków pamięci
+    private void OnEnable()
+    {
+        pauseAction.Enable();
+    }
+
+    private void OnDisable()
+    {
+        pauseAction.Disable();
+    }
+
+    public void TogglePause()
+    {
+        if (GameIsPaused)
         {
-            if (GameIsPaused)
-            {
-                Resume();
-            }
-            else
-            {
-                Pause();
-            }
+            Resume();
+        }
+        else
+        {
+            Pause();
         }
     }
 
-    // Metoda publiczna, aby można było ją podpiąć pod przycisk
     public void Resume()
     {
-        pauseMenuUI.SetActive(false); // Wyłącza panel menu
-        Time.timeScale = 1f;          // Przywraca normalny upływ czasu
+        if (pauseMenuUI == null) return;
+        
+        pauseMenuUI.SetActive(false);
+        Time.timeScale = 1f;
         GameIsPaused = false;
     }
 
-    void Pause()
+    private void Pause()
     {
-        pauseMenuUI.SetActive(true);  // Włącza panel menu
-        Time.timeScale = 0f;          // Zatrzymuje czas w grze
+        if (pauseMenuUI == null) return;
+        
+        pauseMenuUI.SetActive(true);
+        Time.timeScale = 0f;
         GameIsPaused = true;
     }
 
-    // Metoda publiczna dla przycisku wyjścia
     public void QuitGame()
     {
         Debug.Log("Wychodzenie z gry...");
-        Application.Quit(); // Uwaga: To zadziała tylko po zbudowaniu gry, nie w edytorze
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+        #else
+            Application.Quit();
+        #endif
     }
 }
