@@ -1,15 +1,16 @@
-using UnityEngine;
+/*using UnityEngine;
 using System.Collections.Generic;
 
 [CreateAssetMenu(fileName = "BibliotekaDialogow", menuName = "Dialogi/Biblioteka")]
 public class DialogueData : ScriptableObject
 {
     [Header("Dialogi Gracza")]
-    public string playerDialog = "Dziwnie si� czuj�...";
+    public string playerDialog = "Dziwnie się czuję...";
+    public string playerDialog = "Dziwnie się czuję...";
 
     [Header("Dialogi NPC")]
-    public string janDialog = "Musz� wypi� kaw�.";
-    public string marekDialog = "Co tu si� dzieje?";
+    public string janDialog = "Muszę wypić kawę.";
+    public string marekDialog = "Co tu się dzieje?";
     public string annaDialog = "Nie mam teraz czasu.";
     public string PobierzTekst(string postac)
     {
@@ -22,8 +23,22 @@ public class DialogueData : ScriptableObject
             default: return "brak dialogu";
         }
     }
+}
+}
+*/
+using UnityEngine;
 
-    // TODO
-    public List<string> kwestie;
+[CreateAssetMenu(fileName = "BibliotekaDialogow", menuName = "Dialogi/Biblioteka")]
+public class DialogueData : ScriptableObject
+{
     public string nazwaNPC;
+
+    [Header("Dialogi")]
+    public string playerDialog = "Dziwnie się czuję...";
+    public string janDialog = "Muszę wypić kawę.";
+    public string marekDialog = "Co tu się dzieje?";
+    public string annaDialog = "Nie mam teraz czasu.";
+
+    [Header("Kwestie do wyswietlenia")]
+    public string[] kwestie;
 }
