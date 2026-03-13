@@ -5,12 +5,11 @@ using System.Collections.Generic;
 public class DialogueData : ScriptableObject
 {
     [Header("Dialogi Gracza")]
-    public string playerDialog = "Dziwnie siê czujê...";
-    public string playerDialog = "Dziwnie siê czujê...";
+    public string playerDialog = "Dziwnie siï¿½ czujï¿½...";
 
     [Header("Dialogi NPC")]
-    public string janDialog = "Muszê wypiæ kawê.";
-    public string marekDialog = "Co tu siê dzieje?";
+    public string janDialog = "Muszï¿½ wypiï¿½ kawï¿½.";
+    public string marekDialog = "Co tu siï¿½ dzieje?";
     public string annaDialog = "Nie mam teraz czasu.";
     public string PobierzTekst(string postac)
     {
@@ -23,4 +22,8 @@ public class DialogueData : ScriptableObject
             default: return "brak dialogu";
         }
     }
+
+    // TODO
+    public List<string> kwestie;
+    public string nazwaNPC;
 }
