@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [Header("Movement Settings")]
-    public float moveSpeed = 5f;
+    public float moveSpeed = 3f;
 
     [HideInInspector]
     public bool isGrounded = true;
