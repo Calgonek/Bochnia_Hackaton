@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class PlayerController : MonoBehaviour
+public class PlayerA1 : MonoBehaviour
 {
     [Header("Movement Settings")]
     public float moveSpeed = 5f;
