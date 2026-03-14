@@ -14,7 +14,7 @@ public class TeleportDialog : MonoBehaviour
     [Header("Ustawienia Dialogu")]
     [TextArea(3, 5)]
     [Tooltip("Tekst przemyśleń bohatera.")]
-    [SerializeField] private string thoughtText = "Znowu ten portal... Ciekawe, dokąd mnie tym razem zabierze.";
+    [SerializeField] private string thoughtText = "Hmm ciekawe jak wyglądam w lustrze...";
     
     [Tooltip("Czas w sekundach, po którym tekst zniknie (wpisz 0, aby nie znikał).")]
     [SerializeField] private float displayDuration = 4f;
