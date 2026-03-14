@@ -3,8 +3,8 @@ using System.Collections;
 
 public class TeleportInside : MonoBehaviour
 {
-    public Transform celTeleportu; // Przeci¹gnij tutaj obiekt docelowy
-    public CanvasGroup fadeGroup;  // Przeci¹gnij tutaj czarny ekran
+    public Transform celTeleportu;
+    public CanvasGroup fadeGroup; 
     public float czasFade = 0.5f;
 
     private bool isTeleporting = false;
@@ -21,7 +21,7 @@ public class TeleportInside : MonoBehaviour
     {
         isTeleporting = true;
 
-        // 1. Œciemnianie
+       
         float timer = 0;
         while (timer < czasFade)
         {
@@ -30,13 +30,13 @@ public class TeleportInside : MonoBehaviour
             yield return null;
         }
 
-        // 2. Teleportacja
+       
         player.position = celTeleportu.position;
 
-        // 3. Krótka pauza na czarnym ekranie
+        
         yield return new WaitForSeconds(0.5f);
 
-        // 4. Rozjaœnianie
+       
         timer = 0;
         while (timer < czasFade)
         {
