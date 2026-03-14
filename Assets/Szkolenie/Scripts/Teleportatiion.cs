@@ -1,37 +1,40 @@
 using UnityEngine;
 using UnityEngine.SceneManagement; 
 using System.Collections;
-
-public class Teleport : MonoBehaviour
+namespace test
 {
-    public string targetSceneName; 
-    public CanvasGroup fadeGroup;  
-    public float fadeDuration = 1f;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public class Teleport : MonoBehaviour
     {
-       
-        if (collision.CompareTag("Player"))
-        {
-            StartCoroutine(FadeAndTeleport());
-        }
-    }
+        public string targetSceneName;
+        public CanvasGroup fadeGroup;
+        public float fadeDuration = 1f;
 
-    IEnumerator FadeAndTeleport()
-    {
-        float timer = 0;
-
-        
-        while (timer < fadeDuration)
+        private void OnTriggerEnter2D(Collider2D collision)
         {
-            timer += Time.deltaTime;
-            fadeGroup.alpha = timer / fadeDuration;
-            yield return null;
+
+            if (collision.CompareTag("Player"))
+            {
+                StartCoroutine(FadeAndTeleport());
+            }
         }
 
-        fadeGroup.alpha = 1;
+        IEnumerator FadeAndTeleport()
+        {
+            float timer = 0;
 
-      
-        SceneManager.LoadScene(targetSceneName);
+
+            while (timer < fadeDuration)
+            {
+                timer += Time.deltaTime;
+                fadeGroup.alpha = timer / fadeDuration;
+                yield return null;
+            }
+
+            fadeGroup.alpha = 1;
+
+
+            SceneManager.LoadScene(targetSceneName);
+        }
     }
 }
